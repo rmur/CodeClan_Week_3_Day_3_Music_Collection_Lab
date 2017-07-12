@@ -1,19 +1,23 @@
 require('pry')
-require_relative('album.rb')
+require_relative('album')
+require_relative('artist')
+Album.delete_all()
+Artist.delete_all()
 
-album1 = Album.new('title' => 'The Works', 'genre' => 'Rock')
 
-album2 = Album.new('title' => 'Apetite for Destruction', 'genre' => 'Rock')
+
 
 artist1 = Artist.new('name' => 'Queen')
-
-artist2 = Artist.new('name' => 'Guns & Roses')
-
-album1.save
-
-album2.save
-
 artist1.save
 
-artist2.save
+album1 = Album.new('title' => 'The Works', 'genre' => 'Rock','artist_id' => artist1.id)
+album1.save
+
+album1.show_artist()
+binding.pry
+
+
+Album.list_all()
+
+
 

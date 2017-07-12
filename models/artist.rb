@@ -8,7 +8,8 @@ class Artist
 
   def initialize(options)
     @name = options['name']
-    @id = options['id'].to_i if options['id']
+    @id = options['id'].to_i
+    @album_id = options['album_id'].to_i
   end
 
   def save
@@ -21,7 +22,7 @@ class Artist
     sql = "DELETE FROM artists"
     SqlRunner.run(sql)
   end
-  
+
 
 
 

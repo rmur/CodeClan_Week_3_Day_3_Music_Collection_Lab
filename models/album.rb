@@ -14,7 +14,7 @@ attr_accessor :tile, :genre
 
 def save
   sql = "INSERT INTO albums (title, genre) VALUES
-        ('#{@title}', '#{@genre}');"
+        ('#{@title}', '#{@genre}') RETURNING id;"
   @id = SqlRunner.run(sql)[0]['id'].to_i
 end
 

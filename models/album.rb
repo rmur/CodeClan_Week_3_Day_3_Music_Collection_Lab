@@ -12,11 +12,17 @@ attr_accessor :tile, :genre
     @id = options['id'].to_i if options['id']
   end
 
-def save
-  sql = "INSERT INTO albums (title, genre) VALUES
+  def save
+    sql = "INSERT INTO albums (title, genre) VALUES
         ('#{@title}', '#{@genre}') RETURNING id;"
-  @id = SqlRunner.run(sql)[0]['id'].to_i
-end
+    @id = SqlRunner.run(sql)[0]['id'].to_i
+  end
+
+  def self.delete_all
+    sql = "DELETE FROM albums"
+    SqlRunner.run(sql)
+  end
+  
 
 
 

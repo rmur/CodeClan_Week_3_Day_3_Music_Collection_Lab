@@ -1,14 +1,17 @@
 require('pg')
-require('../db/music_sql_runner')
+require_relative('../db/music_sql_runner')
+require_relative('album')
+
 
 class Artist
 
-  attr_reader :id
-  attr_accessor :name
+  attr_reader :id ,:name,:genre , :title
+
 
   def initialize(options)
-    @name = options['name']
     @id = options['id'].to_i
+    @name = options['name']
+    
   end
 
   def save
@@ -20,7 +23,7 @@ class Artist
   def album()
     sql = "SELECT * FROM albums WHERE artist_id = #{@id} "
     result = SqlRunner.run(sql)
-    return result.map {|album| Artist.new(album)}
+    Album.new(result[0])
   end
 
   def self.delete_all
